@@ -1,37 +1,39 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import { Nav } from "@/components/Nav/Nav";
+import { SearchBar } from "@/components/SearchBar/SearchBar";
 
 export default function Home() {
   return (
-    <div className="wrapper">
-    <div className="container">
-      <main className="main">
+    <div className="styles.wrapper">
+    <div className="styles.container">
+      <main className="styles.main">
         <Nav/>      
-        <div className="main__centerblock centerblock">
-          <div className="centerblock__search search">
-            <svg className="search__svg">
+        <div className="styles.mainCenterblock centerblock">
+          <SearchBar/>
+          {/* <div className="styles.centerblockSearch search">
+            <svg className="styles.searchSvg">
               <use xlinkHref="/imgicon/sprite.svg#icon-search"></use>
             </svg>
             <input
-              className="search__text"
+              className="styles.searchText"
               type="search"
               placeholder="Поиск"
               name="search"
             />
-          </div>
-          <h2 className="centerblock__h2">Треки</h2>
-          <div className="centerblock__filter filter">
-            <div className="filter__title">Искать по:</div>
-            <div className="filter__button button-author _btn-text">
+          </div> */}
+          <h2 className="styles.centerblockH2">Треки</h2>
+          <div className="styles.centerblockFilter filter">
+            <div className="styles.filterTitle">Искать по:</div>
+            <div className="styles.filterButton buttonAuthor _btnText">
               исполнителю
             </div>
-            <div className="filter__button button-year _btn-text">
+            <div className="styles.filterButton buttonYear _btnText">
               году выпуска
             </div>
-            <div className="filter__button button-genre _btn-text">жанру</div>
+            <div className="styles.filterButton buttonGenre _btnText">жанру</div>
           </div>
-          <div className="centerblock__content playlist-content">
+          <div className="styles.centerblockContent playlistContent">
             <div className="content__title playlist-title">
               <div className="playlist-title__col col01">Трек</div>
               <div className="playlist-title__col col02">Исполнитель</div>
