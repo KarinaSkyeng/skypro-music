@@ -2,12 +2,27 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { Nav } from "@/components/Nav/Nav";
 import { SearchBar } from "@/components/SearchBar/SearchBar";
+import { FilterButtons } from "@/components/FilterButtons/FilterButtons";
 
 export default function Home() {
+  const tracks = [
+    {
+      title: "Guilt",
+      span: "",
+      link: "http://",
+      author: "Nero",
+      authorLink: "http://",
+      album: "Welcome Reality",
+      albumLink: "http://",
+      time: "4:44"
+    },
+    // добавьте остальные треки
+  ];
+
   return (
-    <div className="styles.wrapper">
-    <div className="styles.container">
-      <main className="styles.main">
+    <div className={styles.wrapper}>
+    <div className={styles.container}>
+      <main className={styles.main}>
         <Nav/>      
         <div className="styles.mainCenterblock centerblock">
           <SearchBar/>
@@ -22,8 +37,9 @@ export default function Home() {
               name="search"
             />
           </div> */}
-          <h2 className="styles.centerblockH2">Треки</h2>
-          <div className="styles.centerblockFilter filter">
+          <h2 className={styles.centerblockH2}>Треки</h2>
+          <FilterButtons />
+          {/* <div className="styles.centerblockFilter filter">
             <div className="styles.filterTitle">Искать по:</div>
             <div className="styles.filterButton buttonAuthor _btnText">
               исполнителю
@@ -32,7 +48,7 @@ export default function Home() {
               году выпуска
             </div>
             <div className="styles.filterButton buttonGenre _btnText">жанру</div>
-          </div>
+          </div> */}
           <div className="styles.centerblockContent playlistContent">
             <div className="content__title playlist-title">
               <div className="playlist-title__col col01">Трек</div>
