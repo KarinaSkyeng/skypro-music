@@ -1,4 +1,4 @@
-import { Image } from "next/image";
+import  Image  from "next/image";
 import styles from "./nav.module.css";
 
 export const Nav = () => {

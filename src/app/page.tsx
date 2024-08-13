@@ -3,7 +3,8 @@ import styles from "./page.module.css";
 import { Nav } from "@/components/Nav/Nav";
 import { SearchBar } from "@/components/SearchBar/SearchBar";
 import { FilterButtons } from "@/components/FilterButtons/FilterButtons";
-import { TrackItem } from "@/components/TrackItem.jsx/TrackItem";
+import { TrackItem } from "@/components/TrackItem/TrackItem";
+import { Playlist } from "@/components/Playlist/Playlist";
 
 export default function Home() {
   const tracks = [
@@ -30,7 +31,7 @@ export default function Home() {
          
           <h2 className={styles.centerblockH2}>Треки</h2>
           <FilterButtons />
-          
+          <Playlist tracks={tracks} />
           <TrackItem/>
           
         </div>

@@ -1,5 +1,5 @@
 import styles from "./Playlist.module.css";
-import { TrackItem } from "@/components/TrackItem/TrackItem";
+import { TrackItem } from "./TrackItem/TrackItem";
 
 export const Playlist = ({ tracks }) => (
   <div className={styles.centerblockContent}>
