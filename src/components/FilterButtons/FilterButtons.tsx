@@ -1,10 +1,15 @@
 import styles from './FilterButtons.module.css';
+import cn from "classnames";
 
-export const FilterButtons = () => (
-  <div className={styles.centerblockFilter}>
-    <div className={styles.filterTitle}>Искать по:</div>
-    <div className={`${styles.filterButton} ${styles.buttonAuthor}`}>исполнителю</div>
-    <div className={`${styles.filterButton} ${styles.buttonYear}`}>году выпуска</div>
-    <div className={`${styles.filterButton} ${styles.buttonGenre}`}>жанру</div>
-  </div>
-);
+export function FilterButtons() {
+  return (
+    <div className={styles.centerblockFilter}>
+      <div className={styles.filterTitle}>Искать по:</div>
+      <div className={cn(styles.filterButton, styles.btnText)}>исполнителю</div>
+      <div className={cn(styles.filterButton, styles.btnText)}>
+        году выпуска
+      </div>
+      <div className={cn(styles.filterButton, styles.btnText)}>жанру</div>
+    </div>
+  );
+}
