@@ -1,7 +1,7 @@
-import styles from "./PlaylistTitle.module.css";
+import styles from "./PlaylistItem.module.css";
 import cn from "classnames";
 
-export function PlaylistTitle() {
+export function PlaylistItem() {
   return (
     <div className={styles.contentTitle}>
       <div className={cn(styles.playlistTitleCol, styles.col01)}>Трек</div>
