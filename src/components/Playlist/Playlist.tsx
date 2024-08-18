@@ -1,4 +1,5 @@
-import { TrackItem } from "@components/TrackItem/TrackItem";
+
+import { TrackItem } from "@components/TrackItem.tsx/TrackItem";
 import styles from "./Playlist.module.css";
 
 export function Playlist() {
