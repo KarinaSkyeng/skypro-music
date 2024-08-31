@@ -1,6 +1,5 @@
 .mainNav {
     width: 244px;
-    background-color: #181818;
     padding: 20px 0 20px 36px;
   }
 
@@ -29,10 +28,15 @@
   }
   
   .navMenu {
-    display: block;
-    visibility: visible;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
   }
-
+  
+  .showMenu {
+    max-height: 500px; /* Достаточная высота для содержимого меню */
+  }
+  
   .logoImage {
     width: 113.33px;
     height: 17px;
