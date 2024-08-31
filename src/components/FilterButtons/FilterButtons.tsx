@@ -2,29 +2,53 @@
 
 import { useState } from 'react';
 import { TrackType } from '../../types/tracks';
+import { getUniqueValues } from '../../utils/getUniqueValues';
 import styles from './FilterButtons.module.css';
-import cn from "classnames";
+import { FilterItem } from '@components/FilterItem/FilterItem';
 
-const filterNames: string[] = ["исполнителю", "году выпуска", "жанру"];
-
-type FilterProps = {
+type FilterButtonsProps = {
   tracks: TrackType[];
-};
+}
 
-export function FilterButtons({ tracks }: FilterProps) {
+const filterNames: string[] = ["исполнителю", "жанру", "году выпуска"];
+
+export function FilterButtons({ tracks }: FilterButtonsProps) {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
 
-  function handleChangeFilterButton(filterName: string) {
-    
+  function handleChangeFilter(filterName: string) {
+    setActiveFilter((prevState) => prevState === filterName ? null : filterName);
   }
+
+  function getUnique(): string[] {
+    if (activeFilter === "исполнителю") {
+      return getUniqueValues(tracks, "author");
+    }
+
+    if (activeFilter === "жанру") {
+      return getUniqueValues(tracks, "genre");
+    }
+
+    if (activeFilter === "году выпуска") {
+      return ["По умолчанию", "Сначала новые", "Сначала старые"];
+    }
+
+    return [];
+  }
+
+  const uniqueValues = getUnique();
+
   return (
     <div className={styles.centerblockFilter}>
       <div className={styles.filterTitle}>Искать по:</div>
-      <div className={cn(styles.filterButton, styles.btnText)}>исполнителю</div>
-      <div className={cn(styles.filterButton, styles.btnText)}>
-        году выпуска
-      </div>
-      <div className={cn(styles.filterButton, styles.btnText)}>жанру</div>
+      {filterNames.map((filterName, index) => (
+        <FilterItem
+          filterName={filterName}
+          key={index}
+          isActive={activeFilter === filterName}
+          handleChangeFilter={handleChangeFilter}
+          list={uniqueValues}
+        />
+      ))}
     </div>
   );
 }
