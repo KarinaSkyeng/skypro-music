@@ -1,3 +1,5 @@
+import { UserType } from "./user"
+
 export type TrackType = {
     _id: number,
     name: string,
@@ -8,5 +10,5 @@ export type TrackType = {
     album: string,
     logo: unknown,
     track_file: string,
-    staredUser: number[],
-}
+    staredUser: UserType[],
+};

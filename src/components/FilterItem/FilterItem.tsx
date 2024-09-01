@@ -8,19 +8,7 @@ type FilterItemProps = {
   list: string[];
 };
 
-export function FilterItem({
-  filterName,
-  isActive,
-  handleChangeFilter,
-  list,
-}: FilterItemProps) {
-  const filteredList = list
-    .filter((item) => item !== null && item !== "" && item !== "-")
-    .map((item) => {
-      return item;
-    })
-    .filter((item) => item !== "");
-
+export function FilterItem({ filterName, isActive, handleChangeFilter, list }: FilterItemProps) {
   return (
     <div className={styles.filter}>
       <div
@@ -34,7 +22,7 @@ export function FilterItem({
       {isActive && (
         <div className={styles.listWrapper}>
           <ul className={styles.list}>
-            {filteredList.map((listName, index) => (
+            {list.map((listName, index) => (
               <li className={styles.listItem} key={index}>
                 {listName}
               </li>

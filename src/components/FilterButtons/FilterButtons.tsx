@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from 'react';
 import { TrackType } from '../../types/tracks';
 import { getUniqueValues } from '../../utils/getUniqueValues';
@@ -19,35 +17,41 @@ export function FilterButtons({ tracks }: FilterButtonsProps) {
     setActiveFilter((prevState) => prevState === filterName ? null : filterName);
   }
 
-  function getUnique(): string[] {
-    if (activeFilter === "исполнителю") {
+  function getUnique(filterName: string): string[] {
+    if (filterName === "исполнителю") {
       return getUniqueValues(tracks, "author");
     }
-
-    if (activeFilter === "жанру") {
+    if (filterName === "жанру") {
       return getUniqueValues(tracks, "genre");
     }
-
-    if (activeFilter === "году выпуска") {
+    if (filterName === "году выпуска") {
       return ["По умолчанию", "Сначала новые", "Сначала старые"];
     }
-
     return [];
   }
-
-  const uniqueValues = getUnique();
 
   return (
     <div className={styles.centerblockFilter}>
       <div className={styles.filterTitle}>Искать по:</div>
-      {filterNames.map((filterName, index) => (
-        <FilterItem
-          filterName={filterName}
-          key={index}
-          isActive={activeFilter === filterName}
-          handleChangeFilter={handleChangeFilter}
-          list={uniqueValues}
-        />
+      {filterNames.map((filterName) => (
+        <div key={filterName} className={styles.filterWrapper}>
+          <div
+            className={`${styles.filterButton} ${activeFilter === filterName ? styles.active : ''}`}
+            onClick={() => handleChangeFilter(filterName)}
+          >
+            {filterName}
+          </div>
+          {activeFilter === filterName && (
+            <div className={styles.filterDropdown}>
+              <FilterItem
+                filterName={filterName}
+                isActive={true}
+                handleChangeFilter={() => {}}
+                list={getUnique(filterName)}
+              />
+            </div>
+          )}
+        </div>
       ))}
     </div>
   );
