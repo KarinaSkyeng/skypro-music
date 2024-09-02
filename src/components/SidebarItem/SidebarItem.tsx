@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./SidebarItem.module.css";
 
-export function SidebarItems() {
+export function SidebarItem() {
   return (
     <div className={styles.mainSidebar}>
       <div className={styles.sidebarPersonal}>

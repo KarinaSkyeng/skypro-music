@@ -1,4 +1,3 @@
-
 import styles from "./MainSidebar.module.css";
 import { SidebarItem } from "@components/SidebarItem/SidebarItem";
 
