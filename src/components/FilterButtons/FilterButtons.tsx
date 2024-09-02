@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { TrackType } from '../../types/tracks';
 import { getUniqueValues } from '../../utils/getUniqueValues';
 import styles from './FilterButtons.module.css';
-import { FilterItem } from '@components/FilterItem/FilterItem';
+//import { FilterItem } from '@components/FilterItem/FilterItem';
+import { DropMenu } from './DropMenu';
 
 type FilterButtonsProps = {
   tracks: TrackType[];
@@ -30,6 +31,8 @@ export function FilterButtons({ tracks }: FilterButtonsProps) {
     return [];
   }
 
+  const uniqueValues = activeFilter ? getUnique(activeFilter) : [];
+
   return (
     <div className={styles.centerblockFilter}>
       <div className={styles.filterTitle}>Искать по:</div>
@@ -42,14 +45,7 @@ export function FilterButtons({ tracks }: FilterButtonsProps) {
             {filterName}
           </div>
           {activeFilter === filterName && (
-            <div className={styles.filterDropdown}>
-              <FilterItem
-                filterName={filterName}
-                isActive={true}
-                handleChangeFilter={() => {}}
-                list={getUnique(filterName)}
-              />
-            </div>
+            <DropMenu list={uniqueValues} />
           )}
         </div>
       ))}
