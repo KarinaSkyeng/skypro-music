@@ -7,6 +7,7 @@ type DropMenuProps = {
 };
 
 export const DropMenu: React.FC<DropMenuProps> = ({ list, trackCount }) => {
+  
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(prevState => !prevState);
