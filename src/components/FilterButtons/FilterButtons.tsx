@@ -47,6 +47,9 @@ export function FilterButtons({ tracks }: FilterButtonsProps) {
             onClick={() => handleChangeFilter(filter.name)}
           >
             {filter.name}
+            {/* <div className={styles.trackCountBadge}>
+              {getTrackCount(filter)}
+            </div> */}
           </div>
           {activeFilter === filter.name && (
             <DropMenu list={getUniqueValuesByFilter(filter)} trackCount={getTrackCount(filter)} />

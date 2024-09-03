@@ -12,7 +12,7 @@
     cursor: pointer;
   }  
   
-  .trackCount {
+  /* .trackCount {
     display: inline-block;
     background-color: #AD61FF;
     color: #FFFFFF;
@@ -24,7 +24,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+  } */
   
   .dropMenu {
     position: absolute;
