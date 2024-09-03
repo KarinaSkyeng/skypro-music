@@ -2,54 +2,54 @@ import { useState } from 'react';
 import { TrackType } from '../../types/tracks';
 import { getUniqueValues } from '../../utils/getUniqueValues';
 import styles from './FilterButtons.module.css';
-//import { FilterItem } from '@components/FilterItem/FilterItem';
 import { DropMenu } from './DropMenu';
 
 type FilterButtonsProps = {
   tracks: TrackType[];
-}
+};
 
-const filterNames: string[] = ["исполнителю", "жанру", "году выпуска"];
+type Filter = {
+  name: string;
+  property: keyof TrackType | 'year';
+};
+
+const filters: Filter[] = [
+  { name: 'исполнителю', property: 'author' },
+  { name: 'жанру', property: 'genre' },
+  { name: 'году выпуска', property: 'year' },
+];
 
 export function FilterButtons({ tracks }: FilterButtonsProps) {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
 
   function handleChangeFilter(filterName: string) {
-    if (activeFilter === filterName) {
-      setActiveFilter(null);
-    } else {
-      setActiveFilter(filterName);
-    }
+    setActiveFilter(prevFilter => (prevFilter === filterName ? null : filterName));
   }
 
-  function getUnique(filterName: string): string[] {
-    if (filterName === "исполнителю") {
-      return getUniqueValues(tracks, "author");
+  function getUniqueValuesByFilter(filter: Filter): string[] {
+    if (filter.property === 'year') {
+      return ['По умолчанию', 'Сначала новые', 'Сначала старые'];
     }
-    if (filterName === "жанру") {
-      return getUniqueValues(tracks, "genre");
-    }
-    if (filterName === "году выпуска") {
-      return ["По умолчанию", "Сначала новые", "Сначала старые"];
-    }
-    return [];
+    return getUniqueValues(tracks, filter.property);
   }
 
-  const uniqueValues = activeFilter ? getUnique(activeFilter) : [];
+  function getTrackCount(filter: Filter): number {
+    return getUniqueValuesByFilter(filter).length;
+  }
 
   return (
     <div className={styles.centerblockFilter}>
       <div className={styles.filterTitle}>Искать по:</div>
-      {filterNames.map((filterName) => (
-        <div key={filterName} className={styles.filterWrapper}>
+      {filters.map(filter => (
+        <div key={filter.name} className={styles.filterWrapper}>
           <div
-            className={`${styles.filterButton} ${activeFilter === filterName ? styles.active : ''}`}
-            onClick={() => handleChangeFilter(filterName)}
+            className={`${styles.filterButton} ${activeFilter === filter.name ? styles.active : ''}`}
+            onClick={() => handleChangeFilter(filter.name)}
           >
-            {filterName}
+            {filter.name}
           </div>
-          {activeFilter === filterName && (
-            <DropMenu list={uniqueValues} />
+          {activeFilter === filter.name && (
+            <DropMenu list={getUniqueValuesByFilter(filter)} trackCount={getTrackCount(filter)} />
           )}
         </div>
       ))}

@@ -10,6 +10,20 @@
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+  }  
+  
+  .trackCount {
+    display: inline-block;
+    background-color: #AD61FF;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .dropMenu {
@@ -59,6 +73,6 @@
   }
   
   .dropMenuText:hover {
-    color: #b672ff;
+    color: #B672FF;
   }
   
