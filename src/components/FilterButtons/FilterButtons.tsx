@@ -15,7 +15,11 @@ export function FilterButtons({ tracks }: FilterButtonsProps) {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
 
   function handleChangeFilter(filterName: string) {
-    setActiveFilter((prevState) => prevState === filterName ? null : filterName);
+    if (activeFilter === filterName) {
+      setActiveFilter(null);
+    } else {
+      setActiveFilter(filterName);
+    }
   }
 
   function getUnique(filterName: string): string[] {
