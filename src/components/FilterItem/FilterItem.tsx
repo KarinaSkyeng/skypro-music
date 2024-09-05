@@ -9,6 +9,13 @@ type FilterItemProps = {
 };
 
 export function FilterItem({ filterName, isActive, handleChangeFilter, list }: FilterItemProps) {
+  const filteredList = list
+  .filter((item) => item !== null && item !== "" && item !== "-")
+  .map((item) => {
+    return item;
+  })
+  .filter((item) => item !== "");
+  
   return (
     <div className={styles.filter}>
       <div
