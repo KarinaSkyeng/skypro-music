@@ -14,9 +14,18 @@ export function MainSidebar() {
       </div>
       <div className={styles.sidebarBlock}>
         <div className={styles.sidebarList}>
-          <SidebarItem />
-          <SidebarItem />
-          <SidebarItem />
+          <SidebarItem 
+              title="Плейлист дня" 
+              imgSrc="/img/playlist01.png" 
+              imgAlt="Плейлист дня" />
+          <SidebarItem 
+              title="100 танцевальных хитов" 
+              imgSrc="/img/playlist02.png" 
+              imgAlt="100 танцевальных хитов"/>
+          <SidebarItem 
+              title="Инди-заряд" 
+              imgSrc="/img/playlist03.png" 
+              imgAlt="Инди-заряд"/>
         </div>
       </div>
     </div>
