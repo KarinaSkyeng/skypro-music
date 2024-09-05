@@ -14,6 +14,26 @@ export function SidebarItem() {
         priority
       />
     </a>
-  </div>
+    <a className={styles.sidebarLink} href="#">
+      <Image
+        className={styles.sidebarImg}
+        src="/img/playlist02.png"
+        alt="day's playlist"
+        width={250}
+        height={150}
+        priority
+      />
+    </a>
+    <a className={styles.sidebarLink} href="#">
+      <Image
+        className={styles.sidebarImg}
+        src="/img/playlist03.png"
+        alt="day's playlist"
+        width={250}
+        height={150}
+        priority
+      />
+    </a>
+  </div>  
   );
 }
