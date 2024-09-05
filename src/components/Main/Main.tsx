@@ -1,27 +1,22 @@
 import styles from "./Main.module.css";
 import { Nav } from "@components/Nav/Nav";
 import { MainSidebar } from "@components/MainSidebar/MainSidebar";
-import { MainCentralblock } from "@components/MainCetralblock/MainCentralblock";
-import { getTracks } from "../../api/apiTrack";
+import { MainCentralblock } from "@components/MainCentralblock/MainCentralblock";
+import { FC } from "react";
 import { TrackType } from "../../types/tracks";
 
-export const Main = async () => {
-  let tracks: TrackType[] = [];
-  let err: string | null = null;
+type MainProps = {
+  tracks: TrackType[];
+  error: string | null;
+};
 
-  try {
-    tracks = await getTracks();
-  } catch (error) {
-    if (error instanceof Error) {
-      err = error.message;
-    }
-  }
+export const Main: FC<MainProps> = ({ tracks, error }) => {
 
   return (
     <main className={styles.main}>
       <Nav />
-      <MainCentralblock tracks={tracks} error={err} />
+      <MainCentralblock tracks={tracks} error={error}/>
       <MainSidebar />
     </main>
   );
-}
+};

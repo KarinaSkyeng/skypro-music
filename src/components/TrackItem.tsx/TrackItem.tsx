@@ -37,7 +37,7 @@ export function TrackItem({ track }: TrackItemProps) {
           <svg className={styles.trackTimeSvg}>
             <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
           </svg>
-          <span className={styles.trackTimeText}>4:44</span>
+          <span className={styles.trackTimeText}>{duration}</span>
         </div>
       </div>
     </div>
