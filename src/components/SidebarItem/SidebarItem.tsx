@@ -18,30 +18,9 @@ export function SidebarItem() {
               />
             </a>
           </div>
-          <div className={styles.sidebarItem}>
-            <a className={styles.sidebarLink} href='#'>
-              <Image
-                className={styles.sidebarImg}
-                src='/img/playlist02.png'
-                alt="day's playlist"
-                width={250}
-                height={170}
-              />
-            </a>
-          </div>
-          <div className={styles.sidebarItem}>
-            <a className={styles.sidebarLink} href='#'>
-              <Image
-                className={styles.sidebarImg}
-                src='/img/playlist03.png'
-                alt="day's playlist"
-                width={250}
-                height={170}
-              />
-            </a>
+          
           </div>
         </div>
       </div>
-    </div>
   );
 }
