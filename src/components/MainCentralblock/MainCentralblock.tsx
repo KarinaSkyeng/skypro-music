@@ -7,20 +7,17 @@ import { Search } from "@components/Search/Search";
 
 type MainCentralblockProps = {
   tracks: TrackType[];
-  error: string | null;
+  setTrack: (track: TrackType) => void;
 };
 
-export const MainCentralblock = ({ tracks, error }: MainCentralblockProps) => {
+export const MainCentralblock = ({ tracks, setTrack }: MainCentralblockProps) => {
   return (
     <div className={styles.mainCenterblock}>
       <Search />
       <h2 className={styles.centerblockH2}>Треки</h2>
-      {error ? (
-        <div className={styles.errorMessage}>{error}</div>
-      ) : (
-        <FilterButtons tracks={tracks} />
-      )}
-      <PlaylistContent tracks={tracks} />
+      <div className={styles.errorMessage}></div>      
+        <FilterButtons tracks={tracks} />     
+      <PlaylistContent tracks={tracks} setTrack={setTrack} />
     </div>
   );
 };

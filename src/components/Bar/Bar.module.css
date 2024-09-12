@@ -22,6 +22,11 @@
     background: #2e2e2e;
 }
 
+.barTimer {
+    text-align: end;
+    margin-right: 20px;
+  }
+
 .barPlayerBlock {
     height: 73px;
     display: -webkit-box;
