@@ -1,13 +1,22 @@
 import styles from "./Main.module.css";
 import { Nav } from "@components/Nav/Nav";
 import { MainSidebar } from "@components/MainSidebar/MainSidebar";
-import { MainCentralblock } from "@components/MainCetralblock/MainCentralblock";
-export function Main() {
+import { MainCentralblock } from "@components/MainCentralblock/MainCentralblock";
+import { FC } from "react";
+import { TrackType } from "../../types/tracks";
+
+type MainProps = {
+  tracks: TrackType[];
+  error: string | null;
+};
+
+export const Main: FC<MainProps> = ({ tracks, error }) => {
+
   return (
     <main className={styles.main}>
       <Nav />
-      <MainCentralblock />
+      <MainCentralblock tracks={tracks} error={error}/>
       <MainSidebar />
     </main>
   );
-}
+};

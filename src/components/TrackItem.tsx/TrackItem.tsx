@@ -1,6 +1,13 @@
+import { TrackType } from "../../types/tracks";
 import styles from "./TrackItem.module.css";
 
-export function TrackItem() {
+type TrackItemProps = {
+  track: TrackType;
+}
+
+export function TrackItem({ track }: TrackItemProps) {
+  const duration = `${Math.floor(track.duration_in_seconds / 60)}:${track.duration_in_seconds % 60}`;
+
   return (
     <div className={styles.playlistItem}>
       <div className={styles.playlistTrack}>
@@ -11,8 +18,8 @@ export function TrackItem() {
             </svg>
           </div>
           <div>
-            <a className={styles.trackTitleLink} href="http://">
-              Guilt <span className={styles.trackTitleSpan}></span>
+            <a className={styles.trackTitleLink} href={track.track_file}>
+            {track.name}
             </a>
           </div>
         </div>
@@ -30,7 +37,7 @@ export function TrackItem() {
           <svg className={styles.trackTimeSvg}>
             <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
           </svg>
-          <span className={styles.trackTimeText}>4:44</span>
+          <span className={styles.trackTimeText}>{duration}</span>
         </div>
       </div>
     </div>

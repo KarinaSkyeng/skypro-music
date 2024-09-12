@@ -1,27 +1,18 @@
 
 import { TrackItem } from "@components/TrackItem.tsx/TrackItem";
 import styles from "./Playlist.module.css";
+import { TrackType } from "../../types/tracks";
 
-export function Playlist() {
+type PlaylistProps = {
+  tracks: TrackType[];
+}
+
+export function Playlist({ tracks }: PlaylistProps) {
   return (
     <div className={styles.contentPlaylist}>
-      <TrackItem />
-      <TrackItem />
-      <TrackItem />
-      <TrackItem />
-      <TrackItem />
-      <TrackItem />
-      <TrackItem />
-      <TrackItem />
-      <TrackItem />
-      <TrackItem />
-      <TrackItem />
-      <TrackItem />
-      <TrackItem />
-      <TrackItem />
-      <TrackItem />
-      <TrackItem />
-      <TrackItem />
+      {tracks.map((track) => (
+        <TrackItem key={track._id} track={track} />
+      ))}
     </div>
   );
 }

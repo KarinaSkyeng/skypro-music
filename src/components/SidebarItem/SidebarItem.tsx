@@ -1,19 +1,25 @@
 import Image from "next/image";
 import styles from "./SidebarItem.module.css";
 
-export function SidebarItem() {
+type SidebarItemProps = {
+  title: string;
+  imgSrc: string;
+  imgAlt: string;
+};
+
+export function SidebarItem({ title, imgSrc, imgAlt}: SidebarItemProps) {
   return (
     <div className={styles.sidebarItem}>
-      <a className={styles.sidebarLink} href="#">
-        <Image
-          className={styles.sidebarImg}
-          src="/img/playlist01.png"
-          alt="day's playlist"
-          width={250}
-          height={150}
-          priority
-        />
-      </a>
-    </div>
+    <a className={styles.sidebarLink} href="#">
+      <Image
+        className={styles.sidebarImg}
+        src={imgSrc}
+        alt={imgAlt}
+        width={250}
+        height={150}
+        priority
+      />
+    </a>
+  </div>
   );
 }
