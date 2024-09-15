@@ -35,9 +35,9 @@ export default function Home() {
         {errorMessage ? (
           <div className={styles.error}>{errorMessage}</div>
         ) : (
-          <Main tracks={tracks} setTrack={setTrack} />
+          <Main tracks={tracks} />
         )}
-        {track && <Bar track={track} />}
+         <Bar />
         <footer className="footer"></footer>
       </div>
     </div>
