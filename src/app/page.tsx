@@ -1,10 +1,10 @@
 "use client";
 
-import { Bar } from "@components/Bar/Bar";
+import { Bar } from "@/components/Bar/Bar";
 import styles from "./page.module.css";
-import { Main } from "@components/Main/Main";
-import { TrackType } from "../types/tracks";
-import { getTracks } from "../api/apiTrack";
+import { Main } from "@/components/Main/Main";
+import { TrackType } from "@/types/tracks";
+import { getTracks } from "@/api/apiTrack";
 import { useEffect, useState } from "react";
 
 export default function Home() {

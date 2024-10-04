@@ -1,8 +1,8 @@
-import { TrackType } from "../../types/tracks";
+import { TrackType } from "@/types/tracks";
 import styles from "./Player.module.css";
 import cn from "classnames";
-import { useAppDispatch, useAppSelector } from "../../store/store";
-import { setIsShuffle, setNextTrack, setPrevTrack } from "../../store/features/authSlice";
+import { useAppDispatch, useAppSelector } from "@/store/store";
+import { setIsShuffle, setNextTrack, setPrevTrack } from "@/store/features/authSlice";
 
 type PlayerProps = {
   track: TrackType;

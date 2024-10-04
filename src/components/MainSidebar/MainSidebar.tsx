@@ -1,5 +1,5 @@
 import styles from "./MainSidebar.module.css";
-import { SidebarItem } from "@components/SidebarItem/SidebarItem";
+import { SidebarItem } from "@/components/SidebarItem/SidebarItem";
 
 export function MainSidebar() {
   return (

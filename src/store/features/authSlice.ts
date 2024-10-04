@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TrackType } from "../../types/tracks";
+import { TrackType } from "@/types/tracks";
 
 type PlaylistStateType  =  {
     currentTrack: TrackType | null;
