@@ -83,7 +83,7 @@ export function SignIn() {
               {error && <div className={styles.error}>{error}</div>}
               <button className={styles.modalBtnEnter}>Войти</button>
               <button className={styles.modalBtnSignup}>
-                <Link className={styles.modalBtnSignupLink} href="/signup">
+                <Link className={styles.modalBtnSignupLink} href="/SignUp">
                   Зарегистрироваться
                 </Link>
               </button>
