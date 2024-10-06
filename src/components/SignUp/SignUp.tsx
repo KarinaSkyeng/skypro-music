@@ -43,9 +43,10 @@ export function SignUp() {
 
     try {
       setError("");
+      console.log("Данные пользователя перед регистрацией:", userData);
       await dispatch(signUp(userData)).unwrap();
       await dispatch(getToken(userData)).unwrap();
-      router.push("/signin");
+      router.push("/SignIn");
     } catch (error: any) {
       setError(error.message);
     }
@@ -89,8 +90,8 @@ export function SignUp() {
               onChange={handleChangeInput}
             />
             {error && <div className={styles.error}>{error}</div>}
-            <button className={styles.modalBtnSignupEnt}>
-              Зарегистрироваться
+            <button className={styles.modalBtnSignupEnt} type="submit">
+                Зарегистрироваться
             </button>
           </form>
         </div>
