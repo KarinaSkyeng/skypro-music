@@ -32,6 +32,7 @@
   -ms-flex-align: center;
   align-items: center;
   width: 447px;
+  cursor: pointer;
 }
 
 .trackTitleImage {
@@ -120,4 +121,29 @@
   line-height: 24px;
   text-align: right;
   color: #696969;
+}
+
+.blinkedMark {
+  position: relative;
+  left: -50px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #B672FF;
+}
+
+.blinkedMark.active {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

@@ -60,6 +60,7 @@
 
 .playerBtnPrev {
     margin-right: 23px;
+    cursor: pointer;
 }
 
 .playerBtnPrevSvg {
@@ -69,6 +70,7 @@
 
 .playerBtnPlay {
     margin-right: 23px;
+    cursor: pointer;
 }
 
 .playerBtnPlaySvg {
@@ -80,6 +82,7 @@
 .playerBtnNext {
     margin-right: 28px;
     fill: #a53939;
+    cursor: pointer;
 }
 
 .playerBtnNextSvg {
@@ -100,6 +103,10 @@
     stroke: #696969;
 }
 
+.playerBtnRepeatSvg.active {
+    stroke: #ffffff; 
+  } 
+
 .playerBtnShuffle {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -115,6 +122,10 @@
     fill: transparent;
     stroke: #696969;
 }
+
+.playerBtnShuffleSvg.active {
+    stroke: #ffffff; 
+  }
 
 .trackPlay {
     display: -webkit-box;

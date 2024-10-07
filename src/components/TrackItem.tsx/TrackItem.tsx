@@ -1,17 +1,29 @@
+"use client";
+
+import { setCurrentTrack } from "../../store/features/authSlice";
+import { useAppDispatch, useAppSelector } from "../../store/store";
 import { TrackType } from "../../types/tracks";
 import { formatTime } from "../../utils/formatTime";
 import styles from "./TrackItem.module.css";
+import cn from "classnames";
 
 type TrackItemProps = {
   track: TrackType;
-  onClick: () => void;
+  tracks: TrackType[];
 }
 
-export function TrackItem({ track, onClick  }: TrackItemProps) {
+export function TrackItem({ track, tracks }: TrackItemProps) {
   const { name, author, album, duration_in_seconds } = track;
+  const dispatch = useAppDispatch();
+  const { currentTrack, isPlaying } = useAppSelector((state) => state.playlist);
 
+  function handleSelectTrack() {
+    dispatch(setCurrentTrack({ currentTrack: track, playlist: tracks }));
+  }
+
+  const conditionCurrentTrack = currentTrack?._id === track._id;
   return (
-    <div className={styles.playlistItem} onClick={onClick}>
+    <div className={styles.playlistItem} onClick={handleSelectTrack}>
       <div className={styles.playlistTrack}>
         <div className={styles.trackTitle}>
           <div className={styles.trackTitleImage}>
@@ -19,11 +31,11 @@ export function TrackItem({ track, onClick  }: TrackItemProps) {
               <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
             </svg>
           </div>
-          <div>
-            <span className={styles.trackTitleLink}>
-              {name} <span className={styles.trackTitleSpan}></span>
-            </span>
-          </div>
+          {conditionCurrentTrack && (
+            <div
+              className={cn(styles.blinkedMark, { [styles.active]: isPlaying })}
+            ></div>
+          )}
         </div>
         <div className={styles.trackAuthor}>
         <span className={styles.trackAuthorLink}>
