@@ -7,7 +7,7 @@ type SidebarItemProps = {
   imgAlt: string;
 };
 
-export function SidebarItem({ title, imgSrc, imgAlt}: SidebarItemProps) {
+export function SidebarItem({ imgSrc, imgAlt}: SidebarItemProps) {
   return (
     <div className={styles.sidebarItem}>
     <a className={styles.sidebarLink} href="#">

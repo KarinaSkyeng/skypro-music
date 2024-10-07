@@ -7,15 +7,15 @@ import { TrackType } from "../../types/tracks";
 
 type MainProps = {
   tracks: TrackType[];
-  error: string | null;
+  setTrack: (track: TrackType) => void;
 };
 
-export const Main: FC<MainProps> = ({ tracks, error }) => {
+export const Main: FC<MainProps> = ({ tracks, setTrack }) => {
 
   return (
     <main className={styles.main}>
       <Nav />
-      <MainCentralblock tracks={tracks} error={error}/>
+      <MainCentralblock tracks={tracks} setTrack={setTrack}/>
       <MainSidebar />
     </main>
   );
