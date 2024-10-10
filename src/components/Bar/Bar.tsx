@@ -1,12 +1,11 @@
-import { Player } from "@components/Player/Player";
+import { Player } from "@/components/Player/Player";
 import styles from "./Bar.module.css";
-import { Volume } from "@components/Volume/Volume";
-import { TrackType } from "../../types/tracks";
+import { Volume } from "@/components/Volume/Volume";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
-import { formatTime } from "../../utils/formatTime";
-import { ProgressBar } from "@components/ProgressBar/ProgressBar";
-import { useAppDispatch, useAppSelector } from "../../store/store";
-import { setIsPlaying, setNextTrack } from "../../store/features/authSlice";
+import { formatTime } from "@/utils/formatTime";
+import { ProgressBar } from "@/components/ProgressBar/ProgressBar";
+import { useAppDispatch, useAppSelector } from "@/store/store";
+import { setIsPlaying, setNextTrack } from "@/store/features/authSlice";
 
 export function Bar() {
   const audioRef = useRef<HTMLAudioElement>(null);  
@@ -24,7 +23,6 @@ export function Bar() {
 
     if (audio) {
       if (track) {
-        console.log('Track file:', track.track_file);
         audio.src = track.track_file;
 
         const handleError = (e: Event) => {

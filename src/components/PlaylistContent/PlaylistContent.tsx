@@ -1,7 +1,7 @@
-import { PlaylistItem } from "@components/PlaylistItem/PlaylistItem";
+import { PlaylistItem } from "@/components/PlaylistItem/PlaylistItem";
 import styles from "./PlaylistContent.module.css";
-import { Playlist } from "@components/Playlist/Playlist";
-import { TrackType } from "../../types/tracks";
+import { Playlist } from "@/components/Playlist/Playlist";
+import { TrackType } from "@/types/tracks";
 
 type PlaylistContentProps = {
   tracks: TrackType[];

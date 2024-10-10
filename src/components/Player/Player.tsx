@@ -1,8 +1,9 @@
-import { TrackType } from "../../types/tracks";
+import { TrackType } from "@/types/tracks";
 import styles from "./Player.module.css";
 import cn from "classnames";
-import { useAppDispatch, useAppSelector } from "../../store/store";
-import { setIsShuffle, setNextTrack, setPrevTrack } from "../../store/features/authSlice";
+import { useAppDispatch, useAppSelector } from "@/store/store";
+import { setIsShuffle, setNextTrack, setPrevTrack } from "@/store/features/authSlice";
+import { useLikeTrack } from "@/hooks/useLikeTrack";
 
 type PlayerProps = {
   track: TrackType;
@@ -23,6 +24,8 @@ export function Player({
   const { isShuffle, initialPlaylist } = useAppSelector(
     (state) => state.playlist
   );
+
+  const { isLiked, handleLike } = useLikeTrack(track!);
 
   const nextTrack = () => {
     const playlist = isShuffle
@@ -111,16 +114,17 @@ export function Player({
           </div>
         </div>
 
-        <div className={styles.trackPlayLikeDis}>
+         <div className={styles.trackPlayLikeDis}>
           <div className={cn(styles.trackPlayLike, styles.btnIcon)}>
-            <svg className={styles.trackPlayLikeSvg}>
-              <use href="img/icon/sprite.svg#icon-like"></use>
-            </svg>
-          </div>
-          <div className={cn(styles.trackPlayDislike, styles.btnIcon)}>
-            <svg className={styles.trackPlayDislikeSvg}>
-              <use href="img/icon/sprite.svg#icon-dislike"></use>
-            </svg>
+            <div onClick={handleLike}>
+              <svg className={styles.trackTimeSvg}>
+                <use
+                  xlinkHref={`/img/icon/sprite.svg#icon-${
+                    isLiked ? "like-purple" : "like"
+                  }`}
+                ></use>
+              </svg>
+            </div>
           </div>
         </div>
       </div>

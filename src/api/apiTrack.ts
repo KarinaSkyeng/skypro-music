@@ -16,3 +16,83 @@ export const getTracks = async () => {
         }
     }
 };
+
+export async function fetchFavoriteTracks(token: string) {
+    try {
+      const response = await fetch(BASE_URL + "/catalog/track/favorite/all/", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error("Ошибка сервера");
+      }
+  
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error("Ошибка при получении избранных треков:", error);
+      throw error;
+    }
+  }
+  
+  export async function addLikeTrack(token: string, id: number) {
+    try {
+      const response = await fetch(BASE_URL + `/catalog/track/${id}/favorite/`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error("Ошибка сервера");
+      }
+  
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error("Ошибка при добавлении лайка на трек:", error);
+      throw error;
+    }
+  }
+  
+  export async function removeLikeTrack(token: string, id: number) {
+    try {
+      const response = await fetch(BASE_URL + `/catalog/track/${id}/favorite/`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error("Ошибка сервера");
+      }
+  
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error("Ошибка при удалении лайка с трека:", error);
+      throw error;
+    }
+  }
+  
+  export async function getSelectionTracks(id: string) {
+    try {
+      const fullId = Number(id) + 1;
+      const response = await fetch(BASE_URL + `/catalog/selection/${fullId}/`);
+  
+      if (!response.ok) {
+        throw new Error("Ошибка получения");
+      }
+  
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error("Ошибка при получении треков подборки:", error);
+      throw error;
+    }
+  }

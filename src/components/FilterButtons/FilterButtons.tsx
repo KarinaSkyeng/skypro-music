@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { TrackType } from '../../types/tracks';
-import { getUniqueValues } from '../../utils/getUniqueValues';
+import { TrackType } from '@/types/tracks';
+import { getUniqueValues } from '@/utils/getUniqueValues';
 import styles from './FilterButtons.module.css';
-import { FilterItem } from '@components/FilterItem/FilterItem';
+import { FilterItem } from '@/components/FilterItem/FilterItem';
 
 type FilterButtonsProps = {
   tracks: TrackType[];

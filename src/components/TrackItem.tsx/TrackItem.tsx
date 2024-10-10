@@ -1,9 +1,9 @@
 "use client";
 
-import { setCurrentTrack } from "../../store/features/authSlice";
-import { useAppDispatch, useAppSelector } from "../../store/store";
-import { TrackType } from "../../types/tracks";
-import { formatTime } from "../../utils/formatTime";
+import { setCurrentTrack } from "@/store/features/authSlice";
+import { useAppDispatch, useAppSelector } from "@/store/store";
+import { TrackType } from "@/types/tracks";
+import { formatTime } from "@/utils/formatTime";
 import styles from "./TrackItem.module.css";
 import cn from "classnames";
 
