@@ -25,7 +25,7 @@ export function Player({
     (state) => state.playlist
   );
 
-  const { isLiked, handleLike } = useLikeTrack(track!);
+  const { isLiked, handleLike, likesCount } = useLikeTrack(track!);
 
   const nextTrack = () => {
     const playlist = isShuffle
@@ -124,6 +124,7 @@ export function Player({
                   }`}
                 ></use>
               </svg>
+              <span>{likesCount}</span>
             </div>
           </div>
         </div>

@@ -52,7 +52,7 @@ export async function fetchFavoriteTracks(token: string) {
       }
   
       const data = await response.json();
-      return data.data;
+      return { likesCount: data.likesCount, trackId: id };
     } catch (error) {
       console.error("Ошибка при добавлении лайка на трек:", error);
       throw error;
@@ -73,7 +73,7 @@ export async function fetchFavoriteTracks(token: string) {
       }
   
       const data = await response.json();
-      return data.data;
+      return { likesCount: data.likesCount, trackId: id };
     } catch (error) {
       console.error("Ошибка при удалении лайка с трека:", error);
       throw error;

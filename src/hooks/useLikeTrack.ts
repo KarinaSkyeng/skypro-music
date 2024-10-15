@@ -1,6 +1,6 @@
 import { TrackType } from "@/types/tracks";
 import { useAppDispatch, useAppSelector } from "@/store/store";
-import { setDislike, setLike } from "@/store/features/authSlice";
+import { setDislike, setLike, updateLikesCount } from "@/store/features/authSlice";
 import { addLikeTrack, removeLikeTrack } from "@/api/apiTrack";
 
 export function useLikeTrack(track: TrackType) {
@@ -8,8 +8,10 @@ export function useLikeTrack(track: TrackType) {
   const tokens = useAppSelector((state) => state.user.tokens);
   const user = useAppSelector((state) => state.user.user);
   const likedTracks = useAppSelector((state) => state.playlist.likedTracks);
+  const trackLikes = useAppSelector((state) => state.playlist.trackLikes);
 
   const isLiked = !!likedTracks.find((t) => t._id === track._id);
+  const likesCount = trackLikes[track._id] ?? 0;
 
   async function handleLike(event: React.MouseEvent<HTMLDivElement>) {
     event.stopPropagation();
@@ -25,6 +27,7 @@ export function useLikeTrack(track: TrackType) {
     try {
       await fetchAction(tokens.access, track._id);
       dispatch(storeAction(track));
+      dispatch(updateLikesCount({ trackId: track._id, likesCount: result.likesCount }));
     } catch (error) {
       console.log(error);
     }
@@ -33,5 +36,6 @@ export function useLikeTrack(track: TrackType) {
   return {
     isLiked,
     handleLike,
+    likesCount,
   };
 }
