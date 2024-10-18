@@ -85,7 +85,17 @@ const playlistSlice = createSlice({
         (track) => track._id !== action.payload._id
       );
     },
-    
+    toggleLike: (state, action: PayloadAction<TrackType>) => {
+      const track = action.payload;
+      const isLiked = state.likedTracks.find((t) => t._id === track._id);
+      if (isLiked) {
+        state.likedTracks = state.likedTracks.filter((t) => t._id !== track._id);
+        state.trackLikes[track._id]--;
+      } else {
+        state.likedTracks.push(track);
+        state.trackLikes[track._id] = (state.trackLikes[track._id] || 0) + 1;
+      }
+    },
     updateLikesCount: (
       state,
       action: PayloadAction<{ trackId: number; likesCount: number }>
@@ -139,4 +149,5 @@ export const {
   updateLikesCount, 
 } = playlistSlice.actions;
 
+export const { toggleLike } = playlistSlice.actions;
 export const playlistReducer = playlistSlice.reducer;

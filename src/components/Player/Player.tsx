@@ -2,7 +2,7 @@ import { TrackType } from "@/types/tracks";
 import styles from "./Player.module.css";
 import cn from "classnames";
 import { useAppDispatch, useAppSelector } from "@/store/store";
-import { setIsShuffle, setNextTrack, setPrevTrack } from "@/store/features/authSlice";
+import { setIsShuffle, setNextTrack, setPrevTrack, toggleLike } from "@/store/features/authSlice";
 import { useLikeTrack } from "@/hooks/useLikeTrack";
 
 type PlayerProps = {
@@ -24,8 +24,16 @@ export function Player({
   const { isShuffle, initialPlaylist } = useAppSelector(
     (state) => state.playlist
   );
+  const isLiked = useAppSelector((state) =>
+    state.playlist.likedTracks.some((t) => t._id === track._id)
+  );
+  const likesCount = useAppSelector((state) =>
+    state.playlist.trackLikes[track._id] || 0
+  );
 
-  const { isLiked, handleLike, likesCount } = useLikeTrack(track!);
+  const handleLike = () => {
+    dispatch(toggleLike(track));
+  };
 
   const nextTrack = () => {
     const playlist = isShuffle

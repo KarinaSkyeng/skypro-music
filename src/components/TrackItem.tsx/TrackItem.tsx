@@ -1,12 +1,12 @@
 "use client";
 
-import { setCurrentTrack } from "@/store/features/authSlice";
+import { setCurrentTrack, toggleLike } from "@/store/features/authSlice";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { TrackType } from "@/types/tracks";
 import { formatTime } from "@/utils/formatTime";
 import styles from "./TrackItem.module.css";
 import cn from "classnames";
-import { useLikeTrack } from "@/hooks/useLikeTrack";
+//import { useLikeTrack } from "@/hooks/useLikeTrack";
 
 type TrackItemProps = {
   track: TrackType;
@@ -17,7 +17,13 @@ export function TrackItem({ track, tracks }: TrackItemProps) {
   const { name, author, album, duration_in_seconds } = track;
   const dispatch = useAppDispatch();
   const { currentTrack, isPlaying } = useAppSelector((state) => state.playlist);
-  const { isLiked, handleLike } = useLikeTrack(track);
+  const isLiked = useAppSelector((state) =>
+    state.playlist.likedTracks.some((t) => t._id === track._id)
+  );
+
+const handleLike = () => {
+    dispatch(toggleLike(track));
+  };
 
   function handleSelectTrack() {
     dispatch(setCurrentTrack({ currentTrack: track, playlist: tracks }));
