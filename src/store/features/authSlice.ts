@@ -1,13 +1,12 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TrackType } from "@/types/tracks";
-import { fetchFavoriteTracks } from "@/api/apiTrack";
+import { fetchFavoriteTracks, addLikeTrack, removeLikeTrack } from "@/api/apiTrack";
 
 export const getFavoriteTracks = createAsyncThunk(
   "tracks/getFavorite",
   async (token: string) => {
     const response = await fetchFavoriteTracks(token);
-
-    return response;
+    return response as TrackType[]; 
   }
 );
 
@@ -86,9 +85,13 @@ const playlistSlice = createSlice({
         (track) => track._id !== action.payload._id
       );
     },
-  },
-  updateLikesCount: (state, action: PayloadAction<{ trackId: number, likesCount: number }>) => {
-    state.trackLikes[action.payload.trackId] = action.payload.likesCount;
+    
+    updateLikesCount: (
+      state,
+      action: PayloadAction<{ trackId: number; likesCount: number }>
+    ) => {
+      state.trackLikes[action.payload.trackId] = action.payload.likesCount;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getFavoriteTracks.fulfilled, (state, action) => {
@@ -96,6 +99,34 @@ const playlistSlice = createSlice({
     });
   },
 });
+
+export const likeTrack = createAsyncThunk(
+  "tracks/likeTrack",
+  async (
+    { token, trackId }: { token: string; trackId: number },
+    { dispatch }
+  ) => {
+    const response = await addLikeTrack(token, trackId);
+    dispatch(
+      updateLikesCount({ trackId: response.trackId, likesCount: response.likesCount })
+    );
+    return response;
+  }
+);
+
+export const dislikeTrack = createAsyncThunk(
+  "tracks/dislikeTrack",
+  async (
+    { token, trackId }: { token: string; trackId: number },
+    { dispatch }
+  ) => {
+    const response = await removeLikeTrack(token, trackId);
+    dispatch(
+      updateLikesCount({ trackId: response.trackId, likesCount: response.likesCount })
+    );
+    return response;
+  }
+);
 
 export const {
   setCurrentTrack,
@@ -105,6 +136,7 @@ export const {
   setIsShuffle,
   setDislike,
   setLike,
+  updateLikesCount, 
 } = playlistSlice.actions;
-export const { updateLikesCount } = playlistSlice.actions;
+
 export const playlistReducer = playlistSlice.reducer;
