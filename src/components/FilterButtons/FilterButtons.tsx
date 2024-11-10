@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from 'react';
 import { TrackType } from '@/types/tracks';
 import { getUniqueValues } from '@/utils/getUniqueValues';

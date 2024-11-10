@@ -1,5 +1,7 @@
+"use client";
+
 import { Player } from "@/components/Player/Player";
-import styles from "./Bar.module.css";
+import styles from "@/components/Bar/Bar.module.css";
 import { Volume } from "@/components/Volume/Volume";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { formatTime } from "@/utils/formatTime";

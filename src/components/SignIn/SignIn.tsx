@@ -37,8 +37,8 @@ export function SignIn() {
 
     try {
       setError("");
-      await dispatch(signIn(userData)).unwrap();
-      await dispatch(getToken(userData)).unwrap();
+      await dispatch(signIn(userData));
+      await dispatch(getToken(userData));
       router.push("/");
     } catch (error: any) {
       setError(error.message);

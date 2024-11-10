@@ -1,9 +1,8 @@
-"use client";
 import { PlaylistContent } from "@/components/PlaylistContent/PlaylistContent";
-import styles from "./MainCentralblock.module.css";
+import styles from "@/components/MainCentralblock/MainCentralblock.module.css";
 import { FilterButtons } from "@/components/FilterButtons/FilterButtons";
 import { TrackType } from "@/types/tracks";
-import { Search } from "@/components/Search/Search";
+//import { Search } from "@/components/Search/Search";
 
 type MainCentralblockProps = {
   tracks: TrackType[];
@@ -12,12 +11,10 @@ type MainCentralblockProps = {
 
 export const MainCentralblock = ({ tracks }: MainCentralblockProps) => {
   return (
-    <div className={styles.mainCenterblock}>
-      <Search />
+    <>
       <h2 className={styles.centerblockH2}>Треки</h2>
-      <div className={styles.errorMessage}></div>      
-        <FilterButtons tracks={tracks} />     
+      <FilterButtons tracks={tracks} />
       <PlaylistContent tracks={tracks} />
-    </div>
+    </>
   );
 };
