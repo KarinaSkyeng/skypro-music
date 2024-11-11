@@ -29,9 +29,7 @@ export default function SelectionPage() {
     };
 
     getData();
-  }, [id]);
-
-  console.log(selectionTracks); 
+  }, [id]); 
 
   return <MainCentralblock tracks={selectionTracks} title={selectionName} />;
 }
