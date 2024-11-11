@@ -184,3 +184,8 @@
 .login {
   margin-bottom: 30px;
 }
+.error {
+  color: red;
+  font-size: 16px;
+  text-align: center;
+}
