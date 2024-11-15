@@ -1,11 +1,12 @@
 "use client";
 
-import { setCurrentTrack } from "../../store/features/authSlice";
-import { useAppDispatch, useAppSelector } from "../../store/store";
-import { TrackType } from "../../types/tracks";
-import { formatTime } from "../../utils/formatTime";
+import { setCurrentTrack, toggleLike } from "@/store/features/authSlice";
+import { useAppDispatch, useAppSelector } from "@/store/store";
+import { TrackType } from "@/types/tracks";
+import { formatTime } from "@/utils/formatTime";
 import styles from "./TrackItem.module.css";
 import cn from "classnames";
+//import { useLikeTrack } from "@/hooks/useLikeTrack";
 
 type TrackItemProps = {
   track: TrackType;
@@ -16,12 +17,20 @@ export function TrackItem({ track, tracks }: TrackItemProps) {
   const { name, author, album, duration_in_seconds } = track;
   const dispatch = useAppDispatch();
   const { currentTrack, isPlaying } = useAppSelector((state) => state.playlist);
+  const isLiked = useAppSelector((state) =>
+    state.playlist.likedTracks.some((t) => t._id === track._id)
+  );
+
+const handleLike = () => {
+    dispatch(toggleLike(track));
+  };
 
   function handleSelectTrack() {
     dispatch(setCurrentTrack({ currentTrack: track, playlist: tracks }));
   }
 
   const conditionCurrentTrack = currentTrack?._id === track._id;
+
   return (
     <div className={styles.playlistItem} onClick={handleSelectTrack}>
       <div className={styles.playlistTrack}>
@@ -36,6 +45,11 @@ export function TrackItem({ track, tracks }: TrackItemProps) {
               className={cn(styles.blinkedMark, { [styles.active]: isPlaying })}
             ></div>
           )}
+          <div>
+            <span className={styles.trackTitleLink}>
+              {name} <span className={styles.trackTitleSpan}></span>
+            </span>
+          </div>
         </div>
         <div className={styles.trackAuthor}>
         <span className={styles.trackAuthorLink}>
@@ -47,16 +61,21 @@ export function TrackItem({ track, tracks }: TrackItemProps) {
             {album}
           </span>
         </div>
-        <div>
+        <div className={styles.trackItem}>
+        <div onClick={handleLike}>
           <svg className={styles.trackTimeSvg}>
-            <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+            <use xlinkHref={`/img/icon/sprite.svg#icon-${
+                  isLiked ? "like-purple" : "like"
+                }`}
+            ></use>
           </svg>
+        </div> 
           <span className={styles.trackTimeText}>
             {formatTime(duration_in_seconds)}
           </span>
         </div>
       </div>
-    </div>
+    </div>    
   );
 }
   

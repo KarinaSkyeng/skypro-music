@@ -29,7 +29,7 @@ export function FilterItem({ filterName, isActive, handleChangeFilter, list }: F
       {isActive && (
         <div className={styles.listWrapper}>
           <ul className={styles.list}>
-            {list.map((listName, index) => (
+            {filteredList.map((listName, index) => (
               <li className={styles.listItem} key={index}>
                 {listName}
               </li>

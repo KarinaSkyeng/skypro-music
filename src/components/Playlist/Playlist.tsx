@@ -1,7 +1,7 @@
 
-import { TrackItem } from "@components/TrackItem.tsx/TrackItem";
+import { TrackItem } from "@/components/TrackItem.tsx/TrackItem";
 import styles from "./Playlist.module.css";
-import { TrackType } from "../../types/tracks";
+import { TrackType } from "@/types/tracks";
 
 type PlaylistProps = {
   tracks: TrackType[];
