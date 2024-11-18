@@ -5,6 +5,7 @@
 
 import type { Config } from 'jest';
 import nextJest from "next/jest.js";
+import "@testing-library/jest-dom/";
 
 const createJestConfig = nextJest({
   dir: "./",
@@ -17,6 +18,9 @@ const config: Config = {
   moduleNameMapper: {
     "^@/components/(.*)$": "<rootDir>/components/$1",
   },
+};
+module.exports = {
+  setupFilesAfterEnv: ["<rootDir>/setupTests.ts"], 
 };
 
 export default createJestConfig(config);
