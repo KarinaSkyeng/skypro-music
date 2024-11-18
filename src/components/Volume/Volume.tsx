@@ -12,7 +12,7 @@ export function Volume({ value, onChange }: VolumeProps) {
       <div className={styles.volumeContent}>
         <div className={styles.volumeImage}>
           <svg className={styles.volumeSvg}>
-            <use xlinkHref="img/icon/sprite.svg#icon-volume"></use>
+            <use xlinkHref="/img/icon/sprite.svg#icon-volume"></use>
           </svg>
         </div>
         <div className={styles.volumeProgress}>

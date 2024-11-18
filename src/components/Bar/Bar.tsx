@@ -117,7 +117,7 @@ export function Bar() {
   function handleTrackEnded() {
     if (!isLoop && audioRef.current) {
       audioRef.current.currentTime = 0;
-      setIsPlaying(false); // Останавливаем воспроизведение, если не включен цикл
+      setIsPlaying(false); 
     }
   }
 
