@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { Search } from "./Search";
+import '@testing-library/jest-dom';
 
 describe("Search Component", () => {
   it("renders search input with placeholder", () => {
@@ -13,7 +14,7 @@ describe("Search Component", () => {
   it("renders search icon", () => {
     render(<Search />);
 
-    const svgElement = screen.getByRole("img", { hidden: true }); // Для SVG без aria-label
+    const svgElement = document.querySelector('.searchSvg');
     expect(svgElement).toBeInTheDocument();
   });
 });

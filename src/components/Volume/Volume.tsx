@@ -20,14 +20,15 @@ export function Volume({ value, onChange }: VolumeProps) {
             className={styles.volumeProgressLine}
             type="range"
             name="range"
-            min={0}
-            max={1}
-            step={0.01}
+            min="0"
+            max="1"
+            step="0.01"
             value={value}
             onChange={onChange}
+            role="slider"
           />
         </div>
       </div>
-    </div>
+    </div> 
   );
 }

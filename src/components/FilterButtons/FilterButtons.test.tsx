@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { FilterButtons } from "./FilterButtons";
+import '@testing-library/jest-dom';
 
 describe("FilterButtons Component", () => {
   it("renders title and filter buttons", () => {

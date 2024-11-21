@@ -5,22 +5,19 @@
 
 import type { Config } from 'jest';
 import nextJest from "next/jest.js";
-import "@testing-library/jest-dom/";
 
 const createJestConfig = nextJest({
   dir: "./",
 });
 
 const config: Config = {
-  coverageProvider: "v8",
-  testEnvironment: "jsdom",
-
+  preset: 'ts-jest',
+  testEnvironment: 'jsdom',
+  coverageProvider: 'v8',
   moduleNameMapper: {
-    "^@/components/(.*)$": "<rootDir>/components/$1",
+    '^@/components/(.*)$': '<rootDir>/src/components/$1', // Исправьте путь, если папка компонентов находится в src
+    '^@/(.*)$': '<rootDir>/src/$1', // Общий алиас для src
   },
-};
-module.exports = {
-  setupFilesAfterEnv: ["<rootDir>/setupTests.ts"], 
 };
 
 export default createJestConfig(config);
