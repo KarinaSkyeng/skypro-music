@@ -38,11 +38,11 @@ export function SignIn() {
 
     try {
       setError("");
-      await dispatch(signIn(userData));
-      await dispatch(getToken(userData));
+      await dispatch(signIn(userData)).unwrap();;
+      await dispatch(getToken(userData)).unwrap();;
       router.push("/");
     } catch (error: any) {
-      setError(error.message);
+      setError(error.message || "Ошибка при авторизации");
     }
   }
 
