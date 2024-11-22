@@ -1,16 +1,17 @@
 import Image from "next/image";
 import styles from "./SidebarItem.module.css";
+import Link from "next/link";
 
 type SidebarItemProps = {
-  title: string;
   imgSrc: string;
   imgAlt: string;
+  href: string;
 };
 
-export function SidebarItem({ imgSrc, imgAlt}: SidebarItemProps) {
+export function SidebarItem({ imgSrc, imgAlt, href}: SidebarItemProps) {
   return (
     <div className={styles.sidebarItem}>
-    <a className={styles.sidebarLink} href="#">
+    <Link className={styles.sidebarLink} href={href}>
       <Image
         className={styles.sidebarImg}
         src={imgSrc}
@@ -19,7 +20,7 @@ export function SidebarItem({ imgSrc, imgAlt}: SidebarItemProps) {
         height={150}
         priority
       />
-    </a>
+    </Link>
   </div>
   );
 }

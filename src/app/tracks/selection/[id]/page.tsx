@@ -29,9 +29,16 @@ export default function SelectionPage() {
     };
 
     getData();
-  }, [id]);
+  }, [id]); 
 
-  console.log(selectionTracks); 
+   // Динамическое обновление заголовка страницы
+   useEffect(() => {
+    if (selectionName) {
+      document.title = selectionName; // Устанавливаем заголовок страницы
+    } else {
+      document.title = "Треки"; // Название по умолчанию
+    }
+  }, [selectionName]);
 
   return <MainCentralblock tracks={selectionTracks} title={selectionName} />;
 }

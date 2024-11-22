@@ -50,13 +50,13 @@ export function Player({
       <div className={styles.playerControls}>
         <div className={styles.playerBtnPrev}>
           <svg className={styles.playerBtnPrevSvg} onClick={prevTrack}>
-            <use href="/img/icon/sprite.svg#icon-prev"></use>
+            <use xlinkHref="/img/icon/sprite.svg#icon-prev"></use>
           </svg>
         </div>
         <div className={styles.playerBtnPlay} onClick={togglePlay}>
           <svg className={styles.playerBtnPlaySvg}>
             <use
-              href={
+              xlinkHref={
                 isPlaying
                   ? "/img/icon/sprite.svg#icon-pause"
                   : "/img/icon/sprite.svg#icon-play"
@@ -66,7 +66,7 @@ export function Player({
         </div>
         <div className={styles.playerBtnNext} onClick={nextTrack}>
           <svg className={styles.playerBtnNextSvg}>
-            <use href="/img/icon/sprite.svg#icon-next"></use>
+            <use xlinkHref="/img/icon/sprite.svg#icon-next"></use>
           </svg>
         </div>
         <div
@@ -78,7 +78,7 @@ export function Player({
               [styles.active]: isLoop,
             })}
           >
-            <use href="/img/icon/sprite.svg#icon-repeat"></use>
+            <use xlinkHref="/img/icon/sprite.svg#icon-repeat"></use>
           </svg>
         </div>
         <div
@@ -90,7 +90,7 @@ export function Player({
               [styles.active]: isShuffle,
             })}
           >
-            <use href="/img/icon/sprite.svg#icon-shuffle"></use>
+            <use xlinkHref="/img/icon/sprite.svg#icon-shuffle"></use>
           </svg>
         </div>
       </div>
@@ -99,7 +99,7 @@ export function Player({
         <div className={styles.trackPlayContain}>
           <div className={styles.trackPlayImage}>
             <svg className={styles.trackPlaySvg}>
-              <use href="/img/icon/sprite.svg#icon-note"></use>
+              <use xlinkHref="/img/icon/sprite.svg#icon-note"></use>
             </svg>
           </div>
           <div className={styles.trackPlayAuthor}>

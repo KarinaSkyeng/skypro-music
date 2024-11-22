@@ -37,7 +37,7 @@ const handleLike = () => {
         <div className={styles.trackTitle}>
           <div className={styles.trackTitleImage}>
             <svg className={styles.trackTitleSvg}>
-              <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+              <use xlinkHref="/img/icon/sprite.svg#icon-note"></use>
             </svg>
           </div>
           {conditionCurrentTrack && (

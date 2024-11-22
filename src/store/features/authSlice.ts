@@ -46,35 +46,47 @@ const playlistSlice = createSlice({
       const playlist = state.isShuffle
         ? [...state.initialPlaylist].sort(() => Math.random() - 0.5)
         : state.initialPlaylist;
+    
+      if (!playlist.length) return; // Плейлист пуст
+    
       const currentIndex = playlist.findIndex(
         (track) => track._id === state.currentTrack?._id
       );
-      if (playlist.length - 1 === currentIndex) {
+    
+      if (currentIndex === -1 || currentIndex === playlist.length - 1) {
         state.isPlaying = false;
         return;
       }
+    
       state.currentTrack = playlist[currentIndex + 1];
     },
     setPrevTrack: (state) => {
       const playlist = state.isShuffle
         ? [...state.initialPlaylist].sort(() => Math.random() - 0.5)
         : state.initialPlaylist;
+    
+      if (!playlist.length) return; // Плейлист пуст
+    
       const currentIndex = playlist.findIndex(
         (track) => track._id === state.currentTrack?._id
       );
-      if (!currentIndex) {
+    
+      if (currentIndex <= 0) {
         state.isPlaying = false;
         return;
       }
+    
       state.currentTrack = playlist[currentIndex - 1];
     },
     setIsPlaying: (state, action: PayloadAction<boolean>) => {
       state.isPlaying = action.payload;
     },
     setIsShuffle: (state, action: PayloadAction<boolean>) => {
-      state.playlist = [...state.initialPlaylist].sort(
-        () => Math.random() - 0.5
-      );
+      if (action.payload && !state.isShuffle) {
+        state.playlist = [...state.initialPlaylist].sort(() => Math.random() - 0.5);
+      } else if (!action.payload && state.isShuffle) {
+        state.playlist = state.initialPlaylist;
+      }
       state.isShuffle = action.payload;
     },
     setLike: (state, action: PayloadAction<TrackType>) => {

@@ -9,10 +9,10 @@ type MainCentralblockProps = {
   title: string;
 };
 
-export const MainCentralblock = ({ tracks }: MainCentralblockProps) => {
+export const MainCentralblock = ({ tracks, title }: MainCentralblockProps) => {
   return (
     <>
-      <h2 className={styles.centerblockH2}>Треки</h2>
+      <h2 className={styles.centerblockH2}>{title}</h2>
       <FilterButtons tracks={tracks} />
       <PlaylistContent tracks={tracks} />
     </>
