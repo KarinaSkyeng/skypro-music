@@ -1,3 +1,5 @@
+"use client";
+
 import { PlaylistItem } from "@/components/PlaylistItem/PlaylistItem";
 import styles from "./PlaylistContent.module.css";
 import { Playlist } from "@/components/Playlist/Playlist";

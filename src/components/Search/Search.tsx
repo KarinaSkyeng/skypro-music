@@ -1,3 +1,5 @@
+"use client";
+
 import { ChangeEvent, useCallback, useState } from "react";
 import styles from "./Search.module.css";
 import { useAppDispatch } from "@/store/store";
