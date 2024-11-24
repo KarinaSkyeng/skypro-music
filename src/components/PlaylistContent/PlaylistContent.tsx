@@ -13,9 +13,10 @@ export function PlaylistContent({ tracks }: PlaylistContentProps) {
   const filterPlaylist = useAppSelector(
     (state) => state.playlist.filteredTracks
   );
+
   return (
     <div className={styles.centerblockContent}>
-      <PlaylistItem />
+      <PlaylistItem tracks={tracks} />
       <Playlist tracks={filterPlaylist} />
     </div>
   );

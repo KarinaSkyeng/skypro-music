@@ -56,13 +56,14 @@ const playlistSlice = createSlice({
       state.initialPlaylist = action.payload.playlist;
       state.playlist = action.payload.playlist;
     },
+    setInitialPlaylist: (state, action: PayloadAction<TrackType[]>) => {
+      state.initialPlaylist = action.payload;
+      state.filteredTracks = action.payload;
+    },
     setNextTrack: (state) => {
       const playlist = state.isShuffle
         ? [...state.initialPlaylist].sort(() => Math.random() - 0.5)
-        : state.initialPlaylist;
-    
-      if (!playlist.length) return; // Плейлист пуст
-    
+        : state.initialPlaylist;    
       const currentIndex = playlist.findIndex(
         (track) => track._id === state.currentTrack?._id
       );

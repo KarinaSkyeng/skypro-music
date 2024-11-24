@@ -89,15 +89,9 @@ function handleOrderFilter(item: string) {
                 }
                 className={classNames(
                   styles.filterItemListItem,
-                  {
-                    [styles.filterItemListItemActive]:
-                      genresList.includes(item),
-                  },
-                  {
-                    [styles.filterItemListItemActive]:
-                      authorsList.includes(item),
-                  },
-                  { [styles.filterItemListItemActive]: orderFilter === item }
+                  value === "genre" && genresList.includes(item) && styles.filterItemListItemActive,
+                  value === "author" && authorsList.includes(item) && styles.filterItemListItemActive,
+                  value === "order" && orderFilter === item && styles.filterItemListItemActive
                 )}
                 key={item}
               >
