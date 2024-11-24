@@ -18,6 +18,13 @@ type PlaylistStateType = {
   isShuffle: boolean;
   likedTracks: TrackType[];
   trackLikes: { [key: number]: number };
+  filteredTracks: TrackType[];
+  filterOptions: {
+    author: string[];
+    genre: string[];
+    searchValue: string;
+    order: string;
+  };
 };
 
 const initialState: PlaylistStateType = {
@@ -28,6 +35,13 @@ const initialState: PlaylistStateType = {
   isShuffle: false,
   likedTracks: [],
   trackLikes: {},
+  filteredTracks: [],
+  filterOptions: {
+    author: [],
+    genre: [],
+    searchValue: "",
+    order: "По умолчанию",
+  },
 };
 
 const playlistSlice = createSlice({
@@ -88,6 +102,66 @@ const playlistSlice = createSlice({
         state.playlist = state.initialPlaylist;
       }
       state.isShuffle = action.payload;
+    },
+    setFilters: (
+      state,
+      action: PayloadAction<{
+        author?: string[];
+        genre?: string[];
+        searchValue?: string;
+        order?: string;
+      }>
+    ) => {
+      (state.filterOptions = {
+        author: action.payload.author || state.filterOptions.author,
+        genre: action.payload.genre || state.filterOptions.genre,
+
+        searchValue:
+          action.payload.searchValue !== undefined
+            ? action.payload.searchValue
+            : state.filterOptions.searchValue,
+        order: action.payload.order || state.filterOptions.order,
+      }),
+        (state.filteredTracks = state.initialPlaylist.filter((track) => {
+          const hasAuthors = state.filterOptions.author.length !== 0;
+          const isAuthors = hasAuthors
+            ? state.filterOptions.author.includes(track.author)
+            : true;
+          const hasGenres = state.filterOptions.genre.length !== 0;
+
+          const isGenres = hasGenres
+            ? track.genre.some((genre) =>
+                state.filterOptions.genre.includes(genre)
+              )
+            : true;
+          const hasSearchValue = track.name
+            .toLowerCase()
+            .includes(state.filterOptions.searchValue.toLowerCase());
+          return isAuthors && hasSearchValue && isGenres;
+        }));
+    },
+
+    setSortTracks: (state, action: PayloadAction<string>) => {
+      state.filterOptions.order = action.payload;
+      if (state.filterOptions.order === "Сначала старые") {
+        state.filteredTracks = state.filteredTracks.sort(
+          (a, b) =>
+            new Date(a.release_date).getTime() -
+            new Date(b.release_date).getTime()
+        );
+      }
+      if (state.filterOptions.order === "Сначала новые") {
+        state.filteredTracks = state.filteredTracks.sort(
+          (a, b) =>
+            new Date(b.release_date).getTime() -
+            new Date(a.release_date).getTime()
+        );
+      }
+      if (state.filterOptions.order === "По умолчанию") {
+        state.filteredTracks = state.filteredTracks.sort(
+          (a, b) => a._id - b._id
+        );
+      }
     },
     setLike: (state, action: PayloadAction<TrackType>) => {
       state.likedTracks.push(action.payload);
@@ -159,6 +233,8 @@ export const {
   setDislike,
   setLike,
   updateLikesCount, 
+  setFilters,
+  setSortTracks,
 } = playlistSlice.actions;
 
 export const { toggleLike } = playlistSlice.actions;

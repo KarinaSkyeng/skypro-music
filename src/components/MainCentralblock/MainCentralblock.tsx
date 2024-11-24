@@ -13,7 +13,7 @@ export const MainCentralblock = ({ tracks, title }: MainCentralblockProps) => {
   return (
     <>
       <h2 className={styles.centerblockH2}>{title}</h2>
-      <FilterButtons tracks={tracks} />
+      <FilterButtons />
       <PlaylistContent tracks={tracks} />
     </>
   );

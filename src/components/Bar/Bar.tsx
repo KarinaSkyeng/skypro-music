@@ -108,11 +108,11 @@ export function Bar() {
     }
   }
 
-  function handleVolumeChange(e: ChangeEvent<HTMLInputElement>) {
-    if (audioRef.current) {
-      audioRef.current.volume = Number(e.target.value);
-    }
-  }
+  // function handleVolumeChange(e: ChangeEvent<HTMLInputElement>) {
+  //   if (audioRef.current) {
+  //     audioRef.current.volume = Number(e.target.value);
+  //   }
+  // }
 
   function handleTrackEnded() {
     if (!isLoop && audioRef.current) {
@@ -151,7 +151,7 @@ export function Bar() {
           />
           <Volume
             value={volume}
-            onChange={handleVolumeChange} />
+            onChange={(e) => setVolume(Number(e.target.value))} />
         </div>
       </div>
     </div>
