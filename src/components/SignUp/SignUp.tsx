@@ -47,8 +47,10 @@ export function SignUp() {
       await dispatch(signUp(userData)).unwrap();
       await dispatch(getToken(userData)).unwrap();
       router.push("/SignIn");
-    } catch (error: any) {
-      setError(error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message);
+      }      
     }
   }
 

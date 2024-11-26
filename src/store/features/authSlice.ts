@@ -139,7 +139,6 @@ const playlistSlice = createSlice({
             .includes(state.filterOptions.searchValue.toLowerCase());
           return isAuthors && hasSearchValue && isGenres;
         });
-        console.log("Filtered Tracks:", state.filteredTracks);
     },
 
     setSortTracks: (state, action: PayloadAction<string>) => {
