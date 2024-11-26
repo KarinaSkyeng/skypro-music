@@ -12,8 +12,14 @@ export function Search() {
 
   const handleSearch = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      setSearchString(event.target.value);
-      dispatch(setFilters({ searchValue: event.target.value}));
+      const value = event.target.value;
+      setSearchString(value);
+
+      dispatch(
+        setFilters({
+          searchValue: value,
+        })
+      );
     },
     [dispatch]
   );

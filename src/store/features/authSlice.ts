@@ -113,23 +113,22 @@ const playlistSlice = createSlice({
         order?: string;
       }>
     ) => {
-      (state.filterOptions = {
+      state.filterOptions = {
         author: action.payload.author || state.filterOptions.author,
         genre: action.payload.genre || state.filterOptions.genre,
-
         searchValue:
           action.payload.searchValue !== undefined
             ? action.payload.searchValue
             : state.filterOptions.searchValue,
         order: action.payload.order || state.filterOptions.order,
-      }),
-        (state.filteredTracks = state.initialPlaylist.filter((track) => {
+      },
+        state.filteredTracks = state.initialPlaylist.filter((track) => {
           const hasAuthors = state.filterOptions.author.length !== 0;
           const isAuthors = hasAuthors
             ? state.filterOptions.author.includes(track.author)
             : true;
-          const hasGenres = state.filterOptions.genre.length !== 0;
 
+          const hasGenres = state.filterOptions.genre.length !== 0;
           const isGenres = hasGenres
             ? track.genre.some((genre) =>
                 state.filterOptions.genre.includes(genre)
@@ -139,7 +138,8 @@ const playlistSlice = createSlice({
             .toLowerCase()
             .includes(state.filterOptions.searchValue.toLowerCase());
           return isAuthors && hasSearchValue && isGenres;
-        }));
+        });
+        console.log("Filtered Tracks:", state.filteredTracks);
     },
 
     setSortTracks: (state, action: PayloadAction<string>) => {

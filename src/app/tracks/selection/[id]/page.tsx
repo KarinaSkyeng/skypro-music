@@ -31,12 +31,11 @@ export default function SelectionPage() {
     getData();
   }, [id]); 
 
-   // Динамическое обновление заголовка страницы
-   useEffect(() => {
+  useEffect(() => {
     if (selectionName) {
-      document.title = selectionName; // Устанавливаем заголовок страницы
+      document.title = selectionName;
     } else {
-      document.title = "Треки"; // Название по умолчанию
+      document.title = "Треки";
     }
   }, [selectionName]);
 

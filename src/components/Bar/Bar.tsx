@@ -107,13 +107,7 @@ export function Bar() {
       setIsLoop((prevState) => !prevState);
     }
   }
-
-  // function handleVolumeChange(e: ChangeEvent<HTMLInputElement>) {
-  //   if (audioRef.current) {
-  //     audioRef.current.volume = Number(e.target.value);
-  //   }
-  // }
-
+  
   function handleTrackEnded() {
     if (!isLoop && audioRef.current) {
       audioRef.current.currentTime = 0;
