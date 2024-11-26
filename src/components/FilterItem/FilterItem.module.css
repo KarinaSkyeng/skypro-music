@@ -1,4 +1,4 @@
-.filter {
+.filterItem {
     position: relative;
     margin-right: 10px;
   }
@@ -19,7 +19,7 @@
     cursor: pointer;
   }
   
-  .btnText:active {
+  .btnTextActive {
     border-color: #ad61ff;
     color: #ad61ff;
     cursor: pointer;

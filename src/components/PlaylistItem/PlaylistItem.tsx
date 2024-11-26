@@ -1,19 +1,17 @@
+import { TrackType } from "@/types/tracks";
 import styles from "./PlaylistItem.module.css";
-import cn from "classnames";
+import { TrackItem } from "../TrackItem.tsx/TrackItem";
 
-export function PlaylistItem() {
+type PlaylistItemProps = {
+  tracks: TrackType[];
+}
+
+export function PlaylistItem({ tracks }: PlaylistItemProps) {
   return (
-    <div className={styles.contentTitle}>
-      <div className={cn(styles.playlistTitleCol, styles.col01)}>Трек</div>
-      <div className={cn(styles.playlistTitleCol, styles.col02)}>
-        Исполнитель
-      </div>
-      <div className={cn(styles.playlistTitleCol, styles.col03)}>Альбом</div>
-      <div className={cn(styles.playlistTitleCol, styles.col04)}>
-        <svg className={styles.playlistTitleSvg}>
-          <use xlinkHref="/img/icon/sprite.svg#icon-watch"></use>
-        </svg>
-      </div>
+    <div className={styles.contentPlaylist}>
+      {tracks.map((track) => (
+        <TrackItem track={track} key={track._id} tracks={tracks} />
+      ))}
     </div>
-  );
+  ); 
 }

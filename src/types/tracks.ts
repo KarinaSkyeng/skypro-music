@@ -10,5 +10,6 @@ export type TrackType = {
     album: string,
     logo: unknown,
     track_file: string,
-    staredUser: UserType[],
+    stared_user: UserType[],
+    title: string,
 };

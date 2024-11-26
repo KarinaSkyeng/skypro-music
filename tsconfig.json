@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "target": "ES2015",
     "lib": [
       "dom",
       "dom.iterable",
@@ -19,6 +20,7 @@
     "types": [
       "jest"
     ],
+    "typeRoots": ["node_modules/@types"],
     "plugins": [
       {
         "name": "next"
@@ -34,7 +36,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "declarations.d.ts"
   ],
   "exclude": [
     "node_modules"
