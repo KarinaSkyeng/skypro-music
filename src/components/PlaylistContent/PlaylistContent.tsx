@@ -16,7 +16,7 @@ export function PlaylistContent({ tracks }: PlaylistContentProps) {
 
   return (
     <div className={styles.centerblockContent}>
-      <PlaylistItem tracks={tracks} />
+      <PlaylistItem />
       <Playlist tracks={filterPlaylist} />
     </div>
   );
