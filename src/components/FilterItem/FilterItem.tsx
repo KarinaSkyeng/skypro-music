@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import styles from "./FilterItem.module.css";
 import { useAppDispatch, useAppSelector } from "@/store/store";
-import { order } from "./data";
+import { order } from "@/components/FilterItem/data";
 import { setFilters, setSortTracks } from "@/store/features/authSlice";
 
 type FilterItemType = {
@@ -65,7 +65,7 @@ function handleOrderFilter(item: string) {
 }
   return (
     <>
-    <div className={styles.filter}>
+    <div className={styles.filterItem}>
        {filterQuantity !== 0 && (
           <div className={styles.filterDot}>{filterQuantity}</div>
         )}
@@ -89,9 +89,15 @@ function handleOrderFilter(item: string) {
                 }
                 className={classNames(
                   styles.filterItemListItem,
-                  value === "genre" && genresList.includes(item) && styles.filterItemListItemActive,
-                  value === "author" && authorsList.includes(item) && styles.filterItemListItemActive,
-                  value === "order" && orderFilter === item && styles.filterItemListItemActive
+                  {
+                    [styles.filterItemListItemActive]:
+                      genresList.includes(item),
+                  },
+                  {
+                    [styles.filterItemListItemActive]:
+                      authorsList.includes(item),
+                  },
+                  { [styles.filterItemListItemActive]: orderFilter === item }
                 )}
                 key={item}
               >
@@ -100,7 +106,7 @@ function handleOrderFilter(item: string) {
             ))}
           </ul>
         )}
-    </div>
+      </div>
     </>
   );
 }

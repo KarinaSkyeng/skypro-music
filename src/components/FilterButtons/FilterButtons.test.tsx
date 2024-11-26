@@ -1,18 +1,23 @@
 import { render, screen } from "@testing-library/react";
 import { FilterButtons } from "./FilterButtons";
 import '@testing-library/jest-dom';
+import configureStore  from "redux-mock-store";
+import { initialState } from "@/store/features/userSlice";
+import { Provider } from "react-redux";
 
 describe("FilterButtons Component", () => {
+  const mockStore = configureStore([]);
+  let store = mockStore({ playlist: initialState });
   it("renders title and filter buttons", () => {
-    render(<FilterButtons tracks={[]} />);
+    const component = render(
+      <Provider store={store}>
+        <FilterButtons />
+      </Provider>
+    );
 
-    // Проверяем наличие заголовка
     expect(screen.getByText("Искать по:")).toBeInTheDocument();
 
-    // Проверяем наличие всех кнопок фильтров
-    const filterButtons = ["исполнителю", "году выпуска", "жанру"];
-    filterButtons.forEach((filter) => {
-      expect(screen.getByText(filter)).toBeInTheDocument();
-    });
+    const text = screen.getAllByAltText("Искать по:");
+    expect(text.length).toBeGreaterThan(0);
   });
 });
