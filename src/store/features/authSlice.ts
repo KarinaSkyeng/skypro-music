@@ -226,6 +226,7 @@ export const dislikeTrack = createAsyncThunk(
 
 export const {
   setCurrentTrack,
+  setInitialPlaylist,
   setNextTrack,
   setPrevTrack,
   setIsPlaying,
