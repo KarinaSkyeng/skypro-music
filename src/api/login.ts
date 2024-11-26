@@ -65,11 +65,12 @@ export async function fetchToken({ email, password }: LoginProps) {
     },
   });
 
-  const data = await response.json();
-
   if (!response.ok) {
-    throw new Error(data.detail);
+    const data = await response.json();
+    throw new Error(data.detail || "Ошибка получения токена");
   }
 
+
+  const data = await response.json();
   return data;
 }

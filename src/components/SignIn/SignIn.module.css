@@ -31,7 +31,6 @@
 }
 .modalFormLogin {
   width: 366px;
-  height: 439px;
   background-color: #ffffff;
   border-radius: 12px;
   display: -webkit-box;
@@ -45,6 +44,8 @@
   -ms-flex-align: center;
   align-items: center;
   padding: 43px 47px 47px 40px;
+  justify-content: space-between;
+  gap: 20px;
 }
 .modalFormLogin input:first-child {
   margin-bottom: 30px;
@@ -65,10 +66,11 @@
   border-left: none;
   border-right: none;
   outline: none;
+  font-size: 18px;
   border-bottom: 1px solid #d0cece;
   padding: 8px 1px;
-  font-size: 18px;
-  color: #ffffff;
+  margin-right: 3px;
+  margin-bottom: 30px;
 }
 .modalInput::-webkit-input-placeholder {
   font-style: normal;

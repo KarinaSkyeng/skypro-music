@@ -38,9 +38,15 @@ export function SignIn() {
 
     try {
       setError("");
-      await dispatch(signIn(userData));
-      await dispatch(getToken(userData));
-      router.push("/");
+      
+      const response = await dispatch(signIn(userData));
+      
+      if (response.meta.requestStatus === "fulfilled" && response.payload.token) {
+        await dispatch(getToken(userData));
+        router.push("/");         
+      } else {
+        throw new Error("Логин или пароль неверны");
+      }
     } catch (error: unknown) {
       if (error instanceof Error) {
         setError(error.message);
