@@ -71,6 +71,8 @@
   padding: 8px 1px;
   margin-right: 3px;
   margin-bottom: 30px;
+  background-color: white;
+  color: #d0cece;
 }
 .modalInput::-webkit-input-placeholder {
   font-style: normal;
@@ -186,7 +188,7 @@
 }
 .login {
   margin-bottom: 30px;
-  color: #ffffff;
+  /* color: #ffffff; */
 }
 .error {
   color: red;

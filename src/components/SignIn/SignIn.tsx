@@ -40,8 +40,8 @@ export function SignIn() {
       setError("");
       
       const response = await dispatch(signIn(userData));
-      
-      if (response.meta.requestStatus === "fulfilled" && response.payload.token) {
+      console.log(response);
+      if (response.meta.requestStatus === "fulfilled") {
         await dispatch(getToken(userData));
         router.push("/");         
       } else {

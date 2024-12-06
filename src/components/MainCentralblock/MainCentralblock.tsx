@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { PlaylistContent } from "@/components/PlaylistContent/PlaylistContent";
 import styles from "@/components/MainCentralblock/MainCentralblock.module.css";
 import { FilterButtons } from "@/components/FilterButtons/FilterButtons";

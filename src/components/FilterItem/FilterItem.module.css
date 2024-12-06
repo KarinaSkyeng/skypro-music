@@ -1,6 +1,6 @@
 .filterItem {
   position: relative;
-  margin-right: 10px;
+  margin-right: 10px; 
 }
 
 .filterButton {
@@ -36,7 +36,7 @@
 .filterItemListItem {
   text-align: left;
   cursor: pointer;
-
+  margin-bottom: 24px;
   font-size: 18px;
   font-weight: 400;
   line-height: 24px;

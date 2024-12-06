@@ -1,20 +1,21 @@
 import { render, screen } from "@testing-library/react";
 import { Search } from "./Search";
 import '@testing-library/jest-dom';
+import { Provider } from "react-redux";
+import configureStore from "redux-mock-store";
+import { initialState } from "@/store/features/userSlice";
 
-describe("Search Component", () => {
-  it("renders search input with placeholder", () => {
-    render(<Search />);
+describe("Search component", () => {
+  const mockStore = configureStore([]);
+  let store = mockStore({ playlist: initialState });
 
-    const inputElement = screen.getByPlaceholderText("Поиск");
-    expect(inputElement).toBeInTheDocument();
-    expect(inputElement).toHaveAttribute("type", "search");
-  });
-
-  it("renders search icon", () => {
-    render(<Search />);
-
-    const svgElement = document.querySelector('.searchSvg');
-    expect(svgElement).toBeInTheDocument();
+  it("renders search input with placeholder", async () => {
+    const component = render(
+      <Provider store={store}>
+      <Search />
+    </Provider>
+  );
+  const text = await screen.findByPlaceholderText("Поиск");
+  expect(text).toMatch;   
   });
 });

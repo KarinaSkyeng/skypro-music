@@ -3,7 +3,7 @@ import { LoginType } from "@/types/login";
 import { RegisterType } from "@/types/register";
 import { TokenType } from "@/types/token";
 import { UserType } from "@/types/user";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export const getToken = createAsyncThunk(
   "user/getToken",
@@ -31,11 +31,15 @@ export const signUp = createAsyncThunk(
 type UserStateType = {
   user: UserType | null;
   tokens: TokenType | null;
+  isAuthenticated: boolean;
+  token: string | null;
 };
 
 export const initialState: UserStateType = {
   user: null,
   tokens: null,
+  isAuthenticated: false,
+  token: null,
 };
 
 const userSlice = createSlice({
@@ -45,24 +49,40 @@ const userSlice = createSlice({
     logout: (state) => {
       state.user = null;
       state.tokens = null;
+      state.isAuthenticated = false;
+      state.token = null;
+      localStorage.removeItem("authToken");
+    },
+    restoreAuth: (state, action: PayloadAction<{ token: string }>) => {
+      state.isAuthenticated = true;
+      state.token = action.payload.token;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(signIn.fulfilled, (state, action) => {
         state.user = action.payload;
+        state.token = action.payload.token;
+        state.isAuthenticated = true;
+        localStorage.setItem("authToken", action.payload.token);
       })
       .addCase(signIn.rejected, (state, action) => {
         console.error("Ошибка входа:", action.error.message);
       })
       .addCase(signUp.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isAuthenticated = true;
+        localStorage.setItem("authToken", action.payload.token);
       })
       .addCase(signUp.rejected, (state, action) => {
         console.error("Ошибка регистрации:", action.error.message);
       })
       .addCase(getToken.fulfilled, (state, action) => {
         state.tokens = action.payload;
+        state.isAuthenticated = true;
+        state.token = action.payload.token;
+        localStorage.setItem("authToken", action.payload.token);
       })
       .addCase(getToken.rejected, (state, action) => {
         console.error("Ошибка получения токена:", action.error.message);
@@ -70,5 +90,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { logout } = userSlice.actions;
+export const { logout, restoreAuth } = userSlice.actions;
 export const userReducer = userSlice.reducer;

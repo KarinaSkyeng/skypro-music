@@ -27,7 +27,7 @@ type PlaylistStateType = {
   };
 };
 
-const initialState: PlaylistStateType = {
+export const initialState: PlaylistStateType = {
   currentTrack: null,
   initialPlaylist: [],
   playlist: [],

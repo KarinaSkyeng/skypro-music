@@ -1,13 +1,14 @@
-export const getUniqueValues = (items: any[], key: string): string[] => {
-    const uniqueValues = new Set<string>();
-  
-    items.forEach(item => {
-      if (Array.isArray(item[key])) {
-        item[key].forEach(value => uniqueValues.add(value));
-      } else {
-        uniqueValues.add(item[key]);
-      }
-    });
-  
-    return Array.from(uniqueValues);
-  };
+export const getUniqueValues = <T, K extends keyof T>(items: T[], field: K) => {
+  const uniqueValues = new Set<string>();
+
+  items.forEach((item) => {
+    const value = item[field];
+    if (Array.isArray(value)) {
+      value.forEach((v) => uniqueValues.add(String(v)));
+    } else {
+      uniqueValues.add(String(value));
+    }
+  });
+
+  return Array.from(uniqueValues);
+};

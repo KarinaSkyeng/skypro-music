@@ -31,13 +31,5 @@ export default function SelectionPage() {
     getData();
   }, [id]); 
 
-  useEffect(() => {
-    if (selectionName) {
-      document.title = selectionName;
-    } else {
-      document.title = "Треки";
-    }
-  }, [selectionName]);
-
   return <MainCentralblock tracks={selectionTracks} title={selectionName} />;
 }
